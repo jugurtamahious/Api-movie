@@ -115,46 +115,7 @@ var prevPage = 3;
 var lastUrl = "";
 var totalPages = 100;*/
 
-getMovies();
-
-function getMovies(url) {
-  fetch(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=us&sort_by=popularity.desc`
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-
-      showMovie(data.results);
-    });
-}
-function showMovie(data) {
-  $main;
-  innerHTML = "";
-  // mtn j'affiches des info mais je met dais meme const
-  data.forEach((movie) => {
-    const { title, poster_path, vote_average, overview } = movie;
-    console.log("ok loop");
-    let elementMovie = document.createElement("div");
-    elementMovie.classList.add("movie");
-    elementMovie.innerHTML = `
-        <img src="${IMG_URL + poster_path}" alt="${title}">
-            
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${color_note(color_note)}">${vote_average}</span>
-            </div>
-            <div class="overview">
-                <h3>
-                ${overview}
-                </h3>
-            </div>
-        `;
-    $main.appendChild(elementMovie);
-  });
-}
+getBestMovie();
 
 function color_note(color) {
   if (color >= 8) {
@@ -177,16 +138,20 @@ next.addEventListener("click", () => {
     pageCall(nextPage);
   }
 });*/
-menuBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  menu.classList.add("is-open");
-});
-menuClose.addEventListener("click", function (event) {
-  event.preventDefault();
-  menu.classList.remove("is-open");
-});
 
 //code fini
+getBestMovie();
+
+function color_note(color) {
+  if (color >= 8) {
+    console.log("green");
+    return "grenne";
+  } else if (color >= 5) {
+    return "orange";
+  } else {
+    return "red";
+  }
+}
 function getMovie(value) {
   fetch(`${API_URL}/search/multi?api_key=${API_KEY}&query=${test.value}`)
     .then(function (response) {
@@ -302,17 +267,6 @@ function getPoorMovie(rondow) {
       creatMovies(data);
     });
 }
-function getUstMovie(rondow) {
-  fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by=revenue.asc`)
-    .then(function (response) {
-      console.log(response);
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      creatMovies(data);
-    });
-}
 
 $form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -338,4 +292,12 @@ $btnB.addEventListener("click", function () {
 $btnC.addEventListener("click", function () {
   console.log("click moin fort fdp");
   getPoorMovie();
+});
+menuBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  menu.classList.add("is-open");
+});
+menuClose.addEventListener("click", function (event) {
+  event.preventDefault();
+  menu.classList.remove("is-open");
 });
