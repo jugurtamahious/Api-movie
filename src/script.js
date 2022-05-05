@@ -9,30 +9,30 @@ const current = document.getElementById('current')
 const tagsEl = document.getElementById('tags');
 
 
-const genres = [
+const typeFlm = [
     {
       
       "name": "Action 🤠"
     },
     {
       "id": 12,
-      "name": "Adventure 😆"
+      "name": "Aventure 😆"
     },
     {
       "id": 16,
-      "name": "Animation 🤖"
+      "name": "Animation 🐻"
     },
     {
       "id": 35,
-      "name": "Comedy 😂"
+      "name": "Comédie 😂"
     },
     {
       "id": 80,
-      "name": "Crime"
+      "name": "Crime 🔪🩸"
     },
     {
       "id": 99,
-      "name": "Documentary 🤓"
+      "name": "Documentaire 🤓"
     },
     {
       "id": 18,
@@ -40,27 +40,27 @@ const genres = [
     },
     {
       "id": 10751,
-      "name": "Family 👨‍👩‍👦‍👦"
+      "name": "Famille 👨‍👩‍👦‍👦"
     },
     {
       "id": 14,
-      "name": "Fantasy 🤯"
+      "name": "Fantaisie 🤯"
     },
     {
       "id": 36,
-      "name": "History"
+      "name": "Histoire 🏰"
     },
     {
       "id": 27,
-      "name": "Horror 👹"
+      "name": "Horreur 👹"
     },
     {
       "id": 10402,
-      "name": "Music"
+      "name": "Musique 🎶"
     },
     {
       "id": 9648,
-      "name": "Mystery"
+      "name": "Mystère 😶"
     },
     {
       "id": 10749,
@@ -68,7 +68,7 @@ const genres = [
     },
     {
       "id": 878,
-      "name": "Science Fiction"
+      "name": "La science-fiction 🤖"
     },
     {
       "id": 10770,
@@ -76,15 +76,15 @@ const genres = [
     },
     {
       "id": 53,
-      "name": "Thriller"
+      "name": "Polar"
     },
     {
       "id": 10752,
-      "name": "War ⚔️"
+      "name": "Guerre ⚔️"
     },
     {
       "id": 37,
-      "name": "Western"
+      "name": "Occidentale "
     }
   ]
 
@@ -92,7 +92,7 @@ const genres = [
 setGenre();
 function setGenre() {
     tagsEl.innerHTML= '';
-    genres.forEach(genre => {
+    typeFlm.forEach(genre => {
         const t = document.createElement('div');
         t.classList.add('tag');
         t.id=genre.id;
