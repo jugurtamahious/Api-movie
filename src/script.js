@@ -3,7 +3,7 @@ const API_KEY = "ac017f7bf23ec951f66ecee062fbb4d9";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 const $main = document.getElementById("main");
-let $movies = document.querySelector(".movies");
+let $movies = document.querySelector(".movie");
 let $form = document.querySelector("#form");
 let test = document.querySelector("#searche");
 let $button = document.querySelector("#btn");
@@ -218,7 +218,7 @@ function creatMovies(data) {
     console.log($data[i]);
 
     let moviesEl = document.createElement("div");
-    moviesEl.classList.add("movies");
+    moviesEl.classList.add("movie");
     if ($data[i].poster_path) {
       moviesEl.innerHTML = `
       <img src="${IMAGE_URL + $data[i].poster_path}" alt="${$data[i].title}">
