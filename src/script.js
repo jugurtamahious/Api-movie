@@ -20,6 +20,46 @@ let menu = document.querySelector(".menu");
 let menuClose = document.querySelector(".close");
 
 //code a modifier
+let $theme = document.querySelectorAll(".tag");
+
+function getMoviesGenre(genre_value) {
+  fetch(
+    `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${theme[genre_value]}`
+  )
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(test.value);
+      creatMovies(data);
+    });
+}
+for (let i = 0; i < $theme.length; i++) {
+  $theme[i].addEventListener("click", function () {
+    console.log("click");
+  });
+}
+
+/*var currentPage = 1;
+var nextPage = 2;
+var prevPage = 3;
+var lastUrl = "";
+var totalPages = 100;*/
+
+/*prev.addEventListener("click", () => {
+  if (prevPage > 0) {
+    pageCall(prevPage);
+  }
+});
+
+next.addEventListener("click", () => {
+  if (nextPage <= totalPages) {
+    pageCall(nextPage);
+  }
+});*/
+
+//code fini
 
 const typeFlm = [
   { id: 28, name: "Action 🤠" },
@@ -96,7 +136,6 @@ const typeFlm = [
     name: "Occidentale ",
   },
 ];
-
 setGenre();
 function setGenre() {
   tagsEl.innerHTML = "";
@@ -109,49 +148,8 @@ function setGenre() {
     tagsEl.append(creatButton);
   });
 }
-/*var currentPage = 1;
-var nextPage = 2;
-var prevPage = 3;
-var lastUrl = "";
-var totalPages = 100;*/
-
 getBestMovie();
 
-function color_note(color) {
-  if (color >= 8) {
-    console.log("green");
-    return "grenne";
-  } else if (color >= 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
-}
-/*prev.addEventListener("click", () => {
-  if (prevPage > 0) {
-    pageCall(prevPage);
-  }
-});
-
-next.addEventListener("click", () => {
-  if (nextPage <= totalPages) {
-    pageCall(nextPage);
-  }
-});*/
-
-//code fini
-getBestMovie();
-
-function color_note(color) {
-  if (color >= 8) {
-    console.log("green");
-    return "grenne";
-  } else if (color >= 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
-}
 function getMovie(value) {
   fetch(`${API_URL}/search/multi?api_key=${API_KEY}&query=${test.value}`)
     .then(function (response) {
@@ -204,10 +202,18 @@ function creatMovies(data) {
     }
   }
 }
+function color_note(color) {
+  if (color >= 8) {
+    console.log("green");
+    return "grenne";
+  } else if (color >= 5) {
+    return "orange";
+  } else {
+    return "red";
+  }
+}
 function getBestMovie(rondow) {
-  fetch(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=us&sort_by=popularity.desc`
-  )
+  fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc`)
     .then(function (response) {
       console.log(response);
       return response.json();
@@ -218,9 +224,7 @@ function getBestMovie(rondow) {
     });
 }
 function getWorstMovie(rondow) {
-  fetch(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=us&sort_by=popularity.asc`
-  )
+  fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by=popularity.asc`)
     .then(function (response) {
       console.log(response);
       return response.json();
@@ -255,9 +259,7 @@ function getLongerMovie(rondow) {
     });
 }
 function getPoorMovie(rondow) {
-  fetch(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=fr&sort_by=revenue.asc`
-  )
+  fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by=revenue.asc`)
     .then(function (response) {
       console.log(response);
       return response.json();
@@ -272,6 +274,7 @@ $form.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("click");
   getMovie(test.value);
+  test.value = "";
 });
 $button.addEventListener("click", function () {
   console.log("click");
